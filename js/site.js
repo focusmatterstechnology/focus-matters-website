@@ -4,7 +4,7 @@
   var CTA_URL = 'https://calendly.com/focusmatters/15min';
 
   function book() {
-    if (CTA_URL && CTA_URL.indexOf('[FILL IN') === -1) {
+    if (CTA_URL) {
       window.open(CTA_URL, '_blank', 'noopener');
     } else {
       console.warn('[FMT] Set the Calendly booking link (CTA_URL) in js/site.js before launch.');
@@ -31,21 +31,4 @@
     });
   }
 
-  // Lead-magnet form: fake-submit swap (replace with real handler
-  // once the [FILL IN] form action is wired up to Formspree/Netlify Forms).
-  var leadForm = document.querySelector('[data-lead-form]');
-  var leadNote = document.querySelector('[data-lead-note]');
-  var leadSent = document.querySelector('[data-lead-sent]');
-  if (leadForm && leadSent) {
-    leadForm.addEventListener('submit', function (e) {
-      var action = leadForm.getAttribute('action') || '';
-      if (action.indexOf('[FILL IN') !== -1) {
-        e.preventDefault();
-        leadForm.hidden = true;
-        if (leadNote) leadNote.hidden = true;
-        leadSent.hidden = false;
-      }
-      // Once a real action URL is set, let the form submit normally.
-    });
-  }
 })();

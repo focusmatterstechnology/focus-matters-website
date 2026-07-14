@@ -11,20 +11,24 @@ Plain HTML/CSS/JS. No Node build step is required.
 - `js/site.js` — mobile menu toggle, booking-link handler, lead-form fake-submit.
 - `assets/` — logo lockups and brand graphics exported from the design system.
 
-## Before launch — fill these in
+## Before launch
 
-1. **Calendly / booking link** — `js/site.js`, the `CTA_URL` constant. Every "Book a call" button uses this.
-2. **Phone number** — footer (`tel:` link) and the JSON-LD block in `index.html` `<head>`.
-3. **Email address** — footer (`mailto:` link) and the JSON-LD block.
-4. **Instagram handle + URL** — "Ask the IT Guy" section, footer, and JSON-LD `sameAs`.
-5. **Google Analytics GA4 ID** — add the `gtag` snippet to `<head>` at deploy time.
-6. **Guarantee / risk-reversal terms** — "Your risk, removed" section; currently a placeholder sentence.
-7. **Lead-magnet form handler** — the guide-download form's `action` attribute (Formspree, Netlify Forms, etc.) in `index.html`.
-8. **OG / Twitter share image** — `og:image` / `twitter:image` meta tags, needs an absolute URL to a 1200x630 image.
-9. **Real testimonial(s)** — optional; none included yet.
-10. **Shelby's portrait photo** — About section currently shows a placeholder box (`.fmt-portrait` in `index.html`); drop a photo into `assets/` and swap the placeholder `div` for an `<img>`.
+Completed:
 
-Search the codebase for `[FILL IN` to find every placeholder.
+- Calendly booking link
+- Phone number
+- Email address
+- Instagram handle and URL
+- Shelby portrait photo
+- Basic guarantee/risk-reversal copy
+- Static `robots.txt` and `sitemap.xml`
+
+Optional polish:
+
+1. **Google Analytics GA4 ID** — add the `gtag` snippet to `<head>` at deploy time.
+2. **OG / Twitter share image** — current tags use an existing brand image; create a purpose-built 1200x630 image later for better social previews.
+3. **Real testimonial(s)** — optional; none included yet.
+4. **Lead magnet automation** — the current guide CTA uses a `mailto:` link until a real email capture system is selected.
 
 ## Deploy notes
 
