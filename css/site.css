@@ -139,7 +139,10 @@ a.fmt-link:hover { color: var(--brand-primary); }
   border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md);
   background: var(--grad-wash);
   display: flex; align-items: center; justify-content: center;
-  color: var(--text-faint); text-align: center; font-size: 14px; padding: 20px;
+}
+.fmt-portrait img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  display: block;
 }
 
 /* ---- Guarantee ---- */
