@@ -1,8 +1,7 @@
 (function () {
   'use strict';
 
-  // [FILL IN] Calendly / booking link — every "Book" button opens this.
-  var CTA_URL = '[FILL IN: Calendly 15-minute call link]';
+  var CTA_URL = 'https://calendly.com/focusmatters/15min';
 
   function book() {
     if (CTA_URL && CTA_URL.indexOf('[FILL IN') === -1) {
