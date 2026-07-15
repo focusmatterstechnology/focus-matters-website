@@ -1,150 +1,72 @@
 # AGENTS.md - Focus Matters Technology Website
 
-This repository is the deployable Focus Matters Technology website package.
-Any AI agent working here should follow this workflow so Jarvis, Codex, Claude,
-or another tool can update the site without losing track of source, preview, or
-deployment state.
+This repository contains the deployable static website for Focus Matters
+Technology. It is public, so do not add private local paths, credentials,
+client details, internal notes, or non-public infrastructure details here.
 
-## Current Site Map
+## Public-Safe Working Rules
 
-- Deployment repo: `/Users/shelby/.openclaw/workspace/sites/focus-matters-website`
-- GitHub repo: `https://github.com/focusmatterstechnology/focus-matters-website`
-- LifeOS local copy: `/Users/shelby/Library/Mobile Documents/iCloud~md~obsidian/Documents/TheVault/LifeOS/Work/Focus Matters Technology/Website`
-- Local preview URL: `http://localhost:8745/`
-- Local preview server: detached `screen` session named `fmt-website`
-- Temporary hosted domain: `https://merciful-abyss.1wp.site/`
-- Intended production domain in metadata: `https://focusmatters.net`
+- Treat this Git repository as the deployable website source.
+- Keep the site static unless Shelby explicitly approves backend work.
+- Use small, focused commits.
+- Do not add secrets, API keys, OAuth files, private URLs, local home-directory
+  paths, client data, family details, or internal operations notes.
+- Do not claim a form, guide download, analytics integration, or automation
+  exists until it is actually built and verified.
+- Keep assets local under `assets/`; do not hotlink private or local files.
 
-## Source Of Truth
+## Site Structure
 
-Treat the GitHub/deployment repo as the deployable source of truth.
+- `index.html` - main static page
+- `css/tokens.css` - brand design tokens
+- `css/site.css` - page layout and component styles
+- `js/site.js` - mobile menu and current mailto waitlist helper
+- `assets/` - public website images and brand assets
+- `Dockerfile`, `docker-compose.yml`, `nginx.conf` - xCloud Docker + NGINX
+  deployment package
+- `robots.txt`, `sitemap.xml` - crawl and sitemap metadata
+- `XCLOUD_DEPLOY.md` - public-safe deployment notes
 
-The LifeOS copy is Shelby's local preview/editing copy and must stay in sync for
-browser review. When changing deployable website files, update both places:
+## Current Public Site Decisions
 
-- `index.html`
-- `css/`
-- `js/`
-- `assets/`
-- `README.md` or workflow docs when relevant
-
-Do not treat the temporary 1WP domain as editable source. It is only a deployed
-runtime target.
-
-## Standard Update Workflow
-
-1. Read the current request and classify the change:
-   - copy/content
-   - layout/style
-   - asset/image
-   - call-to-action/link
-   - new section/page
-   - deployment/config
-2. Inspect the current repo state before editing:
-   - `git status --short`
-   - search with `rg` for the affected text, link, asset, or section
-3. Edit the deployment repo first.
-4. Mirror the same deployable file changes into the LifeOS local copy.
-5. Verify locally:
-   - `curl -sSI http://localhost:8745/`
-   - fetch changed assets or files directly when relevant
-   - search the served HTML for changed links/text with `curl ... | rg`
-6. If browser behavior matters, open and test the local preview or temp domain
-   with browser automation.
-7. Commit one logical change in the deployment repo.
-8. Push `main` when Shelby expects the hosted site to update from GitHub.
-9. If the temp domain does not update, report that xCloud/1WP likely needs a
-   redeploy or cache refresh.
-
-## Local Preview Server
-
-The local preview currently serves the LifeOS copy, not the Git repo.
-
-Check it:
-
-```bash
-curl -sSI http://localhost:8745/
-```
-
-Restart it if needed:
-
-```bash
-cd "/Users/shelby/Library/Mobile Documents/iCloud~md~obsidian/Documents/TheVault/LifeOS/Work/Focus Matters Technology/Website"
-screen -dmS fmt-website python3 -m http.server 8745
-```
-
-Stop it if needed:
-
-```bash
-screen -S fmt-website -X quit
-```
-
-## Deployment Package
-
-The repo is a static site packaged for xCloud Docker + NGINX.
-
-Important files:
-
-- `Dockerfile`
-- `docker-compose.yml`
-- `nginx.conf`
-- `robots.txt`
-- `sitemap.xml`
-- `XCLOUD_DEPLOY.md`
-
-The Docker image copies only the public site files into NGINX. Agent workflow
-files such as this one are not part of the deployed website unless the Dockerfile
-is changed.
-
-## Current Known Site Decisions
-
-- Booking CTAs should be normal direct links to
+- Booking CTAs use the Calendly 15-minute call link:
   `https://calendly.com/focusmatters/15min`.
-- Shelby requested Calendly CTAs open in a new tab:
+- Calendly CTAs currently open in a new tab with
   `target="_blank" rel="noopener"`.
 - The AI guide section is a placeholder/waitlist until the actual
   `Demystifying AI for small local businesses` guide exists.
-- The current waitlist form uses a prefilled `mailto:` helper; do not imply a
-  backend or automation exists until one is built.
-- Instagram handle is `@asktheitguy` and links to
-  `https://www.instagram.com/asktheitguy/`.
-- Current headshot asset is `assets/ShelbyHeadshot.png`.
-- Do not add fake testimonials, fake automation, fake analytics, or fake lead
-  capture behavior.
+- The waitlist form uses a prefilled `mailto:` helper. Do not represent it as a
+  backend email capture system.
+- Instagram handle is `@asktheitguy`.
+- Current public headshot asset is `assets/ShelbyHeadshot.png`.
+
+## Standard Update Workflow
+
+1. Inspect current state before editing:
+   - `git status --short`
+   - `rg` for affected copy, links, assets, or sections
+2. Make the requested change in the smallest practical scope.
+3. Verify locally before committing.
+4. Update public metadata such as `sitemap.xml`, canonical URLs, and Open Graph
+   tags when adding a page that should be indexed or shared.
+5. Commit one logical change.
+6. Push only when the change is ready for deployment.
 
 ## Verification Checklist
 
 Before reporting completion:
 
-- Repo working tree has only the intended changes.
-- LifeOS local copy is synced for edited deployable files.
-- `http://localhost:8745/` returns HTTP 200.
-- Changed links return expected HTTP status or are intentionally external.
-- Search confirms old text/links/handlers are gone when replacing behavior.
-- For visual/layout changes, inspect at desktop and mobile widths.
-- Commit hash is available for the user.
+- The working tree contains only intended changes.
+- The homepage returns HTTP 200 in local/static preview.
+- Changed links resolve or are intentionally external.
+- Removed/replaced copy is actually gone.
+- For visual changes, inspect desktop and mobile layouts.
+- For new pages, navigation, sitemap, canonical metadata, and share metadata are
+  consistent.
+- The final commit hash is available.
 
-## New Page Or Feature Checklist
+## Private Workflow Notes
 
-For new pages or larger features:
-
-- Keep the site static unless Shelby explicitly approves backend work.
-- Add navigation only when the page should be discoverable from the main site.
-- Update `sitemap.xml` and canonical/Open Graph metadata if the page should be
-  indexed or shared.
-- Update `README.md` if the site structure or launch state changes.
-- Keep assets local under `assets/`; do not hotlink private/local files.
-- Keep accessibility basics: meaningful link text, alt text for content images,
-  keyboard-accessible controls, and visible focus states.
-
-## Commit Guidance
-
-Use small commits with plain messages, for example:
-
-- `Update booking CTA copy`
-- `Add AI guide landing section`
-- `Replace homepage headshot`
-- `Add services page`
-
-Do not batch unrelated website changes into one commit.
-
+Detailed private workflow notes may exist outside this public repo. Keep those
+private instructions out of GitHub unless they have been sanitized for public
+release.
