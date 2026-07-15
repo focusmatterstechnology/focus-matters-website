@@ -17,4 +17,25 @@
     });
   }
 
+  var leadForm = document.querySelector('[data-lead-form]');
+  if (leadForm) {
+    leadForm.addEventListener('submit', function (event) {
+      var emailInput = leadForm.querySelector('input[type="email"]');
+      var email = emailInput ? emailInput.value.trim() : '';
+
+      if (!email) return;
+
+      event.preventDefault();
+
+      var subject = 'AI guide waitlist';
+      var body = [
+        'Please add me to the waitlist for Demystifying AI for small local businesses.',
+        '',
+        'Email: ' + email
+      ].join('\n');
+
+      window.location.href = 'mailto:shelby@focusmatters.net?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  }
+
 })();

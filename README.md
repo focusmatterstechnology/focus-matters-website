@@ -8,7 +8,7 @@ Plain HTML/CSS/JS. No Node build step is required.
 - `index.html` — the page.
 - `css/tokens.css` — brand design tokens (colors, type, spacing, effects) copied from the Focus Matters Technology Design System.
 - `css/site.css` — component styles (buttons, cards, inputs) and page layout.
-- `js/site.js` — mobile menu toggle, booking-link handler, lead-form fake-submit.
+- `js/site.js` — mobile menu toggle and lead-form mailto helper.
 - `assets/` — logo lockups and brand graphics exported from the design system.
 
 ## Before launch
@@ -28,7 +28,8 @@ Optional polish:
 1. **Google Analytics GA4 ID** — add the `gtag` snippet to `<head>` at deploy time.
 2. **OG / Twitter share image** — current tags use an existing brand image; create a purpose-built 1200x630 image later for better social previews.
 3. **Real testimonial(s)** — optional; none included yet.
-4. **Lead magnet automation** — the current guide CTA uses a `mailto:` link until a real email capture system is selected.
+4. **Lead magnet automation** — the current guide waitlist form opens a prefilled email until a real email capture system is selected.
+5. **AI guide document** — create the actual "Demystifying AI for small local businesses" guide before promoting the download heavily.
 
 ## Deploy notes
 
