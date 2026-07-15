@@ -1,20 +1,6 @@
 (function () {
   'use strict';
 
-  var CTA_URL = 'https://calendly.com/focusmatters/15min';
-
-  function book() {
-    if (CTA_URL) {
-      window.open(CTA_URL, '_blank', 'noopener');
-    } else {
-      console.warn('[FMT] Set the Calendly booking link (CTA_URL) in js/site.js before launch.');
-    }
-  }
-
-  document.querySelectorAll('[data-book]').forEach(function (btn) {
-    btn.addEventListener('click', book);
-  });
-
   // Mobile menu toggle
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var mobileMenu = document.querySelector('[data-mobile-menu]');
