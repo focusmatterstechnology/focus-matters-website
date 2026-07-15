@@ -10,6 +10,7 @@ Plain HTML/CSS/JS. No Node build step is required.
 - `css/site.css` — component styles (buttons, cards, inputs) and page layout.
 - `js/site.js` — mobile menu toggle and lead-form mailto helper.
 - `assets/` — logo lockups and brand graphics exported from the design system.
+- `AGENTS.md` — AI workflow instructions for maintaining, extending, syncing, previewing, and deploying the site.
 
 ## Before launch
 
