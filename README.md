@@ -23,13 +23,13 @@ Completed:
 - Basic guarantee/risk-reversal copy
 - Static `robots.txt` and `sitemap.xml`
 - Lead magnet signup — the guide waitlist section now embeds a real Kit (ConvertKit) form (`data-uid="f920b22dc3"`), not a mailto placeholder.
+- Google Analytics 4 (`G-XJ8J7RL95D`)
 
 Optional polish:
 
-1. **Google Analytics GA4 ID** — add the `gtag` snippet to `<head>` at deploy time.
-2. **OG / Twitter share image** — current tags use an existing brand image; create a purpose-built 1200x630 image later for better social previews.
-3. **Real testimonial(s)** — optional; none included yet.
-4. **AI guide document** — create the actual "Demystifying AI for small local businesses" guide before promoting the download heavily.
+1. **OG / Twitter share image** — current tags use an existing brand image; create a purpose-built 1200x630 image later for better social previews.
+2. **Real testimonial(s)** — optional; none included yet.
+3. **AI guide document** — create the actual "Demystifying AI for small local businesses" guide before promoting the download heavily.
 
 ## Deploy notes
 
