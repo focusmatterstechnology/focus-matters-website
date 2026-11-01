@@ -1,6 +1,9 @@
 # xCloud Deploy Notes
 
-This repository is a static Focus Matters Technology website packaged for xCloud's Docker + NGINX stack.
+This repository is the xCloud entry point for `focusmatters.net`. NGINX proxies
+the public domain to the personal Focus Matters hub hosted by Sites. DNS stays
+pointed at the existing xCloud server, and the previous static-site commit is
+the rollback target.
 
 ## Recommended xCloud Setup
 
@@ -8,8 +11,8 @@ This repository is a static Focus Matters Technology website packaged for xCloud
 2. Create a Custom Docker app from this Git repository.
 3. Use the repository root as the app root.
 4. Use Docker Compose if xCloud asks for the run mode.
-5. Point the production domain to the xCloud server.
-6. Enable SSL in xCloud after DNS resolves.
+5. Keep the production domain pointed at the existing xCloud server.
+6. Keep SSL enabled in xCloud.
 
 ## Local Verification
 
@@ -23,16 +26,20 @@ Then open:
 http://localhost:8080
 ```
 
-## Current Domain Assumption
+## Upstream and production domain
 
-The site metadata, `robots.txt`, and `sitemap.xml` currently use:
+The NGINX upstream is:
 
 ```text
-https://focusmatters.net
+https://focus-matters-hub-recreated.shelby264817.chatgpt.site
 ```
 
-If the production domain changes, update:
+The hub's canonical metadata, `robots.txt`, and `sitemap.xml` use:
 
-- `index.html` meta tags and JSON-LD URL
-- `robots.txt`
-- `sitemap.xml`
+```text
+https://www.focusmatters.net
+```
+
+The Sites project must remain publicly accessible for the reverse proxy to
+serve visitors. To roll back, deploy the previous Git commit and rebuild the
+Docker Compose service.
