@@ -1,39 +1,29 @@
-# Focus Matters Technology Website
+# Focus Matters Personal Hub Proxy
 
-Static single-page marketing site packaged for xCloud Docker + NGINX deployment.
-Plain HTML/CSS/JS. No Node build step is required.
+This repository is the thin NGINX deployment layer for `www.focusmatters.net`.
+The personal hub itself is built and published through OpenAI Sites; this
+container preserves the existing domain and reverse-proxies requests to the
+published Site.
 
-## Structure
+## What lives here
 
-- `index.html` — the page.
-- `css/tokens.css` — brand design tokens (colors, type, spacing, effects) copied from the Focus Matters Technology Design System.
-- `css/site.css` — component styles (buttons, cards, inputs) and page layout.
-- `js/site.js` — mobile menu toggle.
-- `assets/` — logo lockups and brand graphics exported from the design system.
+- `nginx.conf` — upstream proxying, response-header hygiene, asset caching,
+  and conservative browser security headers.
+- `Dockerfile` and `docker-compose.yml` — the existing xCloud/Docker runtime.
+- `XCLOUD_DEPLOY.md` — server deployment notes.
 
-## Before launch
+The legacy static FMT files remain in Git history but are not the production
+site. Do not restore them or change DNS when updating the personal hub.
 
-Completed:
+## Deployment model
 
-- Calendly booking link
-- Phone number
-- Email address
-- Instagram handle and URL
-- Shelby portrait photo
-- Basic guarantee/risk-reversal copy
-- Static `robots.txt` and `sitemap.xml`
-- Lead magnet signup — the guide waitlist section now embeds a real Kit (ConvertKit) form (`data-uid="f920b22dc3"`), not a mailto placeholder.
-- Google Analytics 4 (`G-XJ8J7RL95D`)
+1. Publish the verified source version to the existing Focus Matters Site.
+2. Confirm the upstream Sites URL is healthy.
+3. Push any proxy changes to this repository.
+4. On the existing server checkout, pull the exact commit and rebuild the
+   current Compose service.
+5. Verify both the container-local response and `https://www.focusmatters.net`.
 
-Optional polish:
-
-1. **OG / Twitter share image** — current tags use an existing brand image; create a purpose-built 1200x630 image later for better social previews.
-2. **Real testimonial(s)** — optional; none included yet.
-3. **AI guide document** — create the actual "Demystifying AI for small local businesses" guide before promoting the download heavily.
-
-## Deploy notes
-
-This is a static page. For xCloud, use the included `Dockerfile`,
-`docker-compose.yml`, and `nginx.conf`.
-
-See `XCLOUD_DEPLOY.md` for deployment notes.
+The public hub remains the primary Focus Matters body of work. This proxy is
+infrastructure only; content and page architecture belong in the Sites source
+checkout.
